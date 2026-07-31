@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ALEXANDRIA — read a QR code without opening it</title>
+<meta name="description" content="Decodes a QR code and tells you what is
+      inside before you act on it. Offline, no network, no tracking.">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/alexandria.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="shell masthead-inner">
+    <div class="brand">
+      <h1 class="wordmark">ALEXANDRIA</h1>
+      <p class="tagline">Read a code before you act on it</p>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="shell" tabindex="-1">
+
+  <noscript>
+    <div class="disclaimer" style="margin:var(--gap-xl) 0">
+      This program runs entirely in your browser and needs JavaScript to
+      decode anything. Nothing is sent anywhere; the code is in this folder
+      and you can read it.
+    </div>
+  </noscript>
+
+  <section class="intake" id="intake" aria-label="Provide a code">
+    <div class="drop" id="drop">
+      <p class="drop-lead">Drop a picture of a code here</p>
+      <p class="drop-sub">or paste one with Ctrl+V</p>
+      <div class="drop-actions">
+        <button type="button" id="pick">Choose a picture</button>
+        <button type="button" id="camera">Use the camera</button>
+      </div>
+      <input type="file" id="file" accept="image/*" hidden>
+    </div>
+
+    <div class="paste-text">
+      <label class="label" for="text">Or inspect an address you already have</label>
+      <div class="paste-row">
+        <input type="text" id="text" placeholder="https://…"
+               autocomplete="off" spellcheck="false">
+        <button type="button" id="inspect">Inspect</button>
+      </div>
+    </div>
+
+    <div class="camera-stage" id="stage" hidden>
+      <video id="video" playsinline muted></video>
+      <button type="button" id="stopCamera">Stop</button>
+    </div>
+
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+  </section>
+
+  <section id="report" aria-label="What the code contains"></section>
+
+</main>
+
+<footer class="footer">
+  <div class="shell">
+    <p class="disclaimer">
+      This program reports what it found. It never says a code is safe,
+      because it cannot know that. An empty list means nothing matched its
+      checks, which is a much weaker statement.
+    </p>
+    <p class="footer-note">
+      Everything happens in this page. No code, image or address is sent
+      anywhere, and there is nothing here that could send it.
+    </p>
+  </div>
+</footer>
+
+<!-- Plain script tags, deliberately. Modules and fetch() are blocked under
+     the file:// protocol, and this program must open by double-clicking
+     index.html with no server and no build step. -->
+<script src="assets/vendor/jsQR.js"></script>
+<script src="js/punycode.js"></script>
+<script src="js/inspect.js"></script>
+<script src="js/scan.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
