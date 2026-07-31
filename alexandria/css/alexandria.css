@@ -1,0 +1,137 @@
+/* ALEXANDRIA-specific layout. Colours and type live in tokens.css. */
+
+.shell { width: 100%; max-width: 720px; margin: 0 auto; padding: 0 var(--gap-lg); }
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus {
+  left: var(--gap-lg); top: var(--gap-sm); z-index: 10;
+  background: var(--paper); padding: var(--gap-sm) var(--gap-md);
+  border: var(--line) solid var(--ink);
+}
+
+.masthead { border-bottom: var(--line) solid var(--rule); margin-bottom: var(--gap-xl); }
+.masthead-inner { padding: var(--gap-lg) 0 var(--gap-md); }
+.wordmark { font-size: var(--size-display); font-weight: 500; letter-spacing: var(--track-display); }
+.tagline { margin: 2px 0 0; font-size: var(--size-small); color: var(--muted); }
+
+/* ---- intake ---------------------------------------------------------- */
+
+.drop {
+  border: var(--line) dashed var(--rule-strong);
+  border-radius: var(--radius);
+  padding: var(--gap-xl) var(--gap-lg);
+  text-align: center;
+  transition: border-color 120ms ease, background 120ms ease;
+}
+.drop.is-over { border-color: var(--accent); background: var(--accent-wash); }
+
+.drop-lead { font-size: var(--size-heading); margin: 0; }
+.drop-sub { font-size: var(--size-small); color: var(--muted); margin: var(--gap-xs) 0 0; }
+.drop-actions {
+  display: flex; flex-wrap: wrap; gap: var(--gap-sm);
+  justify-content: center; margin-top: var(--gap-lg);
+}
+
+.paste-text { margin-top: var(--gap-lg); }
+.paste-text .label { display: block; margin-bottom: var(--gap-xs); }
+.paste-row { display: flex; gap: var(--gap-sm); }
+.paste-row input { flex: 1; }
+.paste-row button { white-space: nowrap; }
+
+.camera-stage { margin-top: var(--gap-lg); text-align: center; }
+.camera-stage video {
+  width: 100%; max-width: 420px; border-radius: var(--radius);
+  border: var(--line) solid var(--rule-strong); background: var(--paper-sunk);
+}
+.camera-stage button { margin-top: var(--gap-sm); }
+
+.status { font-size: var(--size-small); color: var(--muted); margin: var(--gap-md) 0 0; min-height: 1.4em; }
+.status.is-bad { color: var(--danger); }
+
+/* ---- report ---------------------------------------------------------- */
+
+#report:empty { display: none; }
+#report { margin-top: var(--gap-xl); }
+
+/* The verdict strip is the one place colour carries the whole message, so
+ * it is also given a word. Colour alone excludes anyone who cannot see the
+ * difference, and a severity that only exists as a hue is not a severity. */
+.report-head {
+  border-top: 2px solid var(--rule-strong);
+  padding-top: var(--gap-sm);
+  margin-bottom: var(--gap-lg);
+}
+.report-head.is-note { border-top-color: var(--accent); }
+.report-head.is-warning { border-top-color: var(--warn); }
+.report-head.is-critical { border-top-color: var(--danger); }
+
+.report-verdict { font-size: var(--size-title); font-weight: 500; margin: var(--gap-xs) 0 0; }
+.report-head.is-warning .report-verdict { color: var(--warn); }
+.report-head.is-critical .report-verdict { color: var(--danger); }
+
+.raw-block { border: var(--line) solid var(--rule); border-radius: var(--radius); }
+.raw-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--gap-sm); padding: var(--gap-sm) var(--gap-md);
+  border-bottom: var(--line) solid var(--rule);
+}
+.raw {
+  margin: 0; padding: var(--gap-md);
+  font-family: var(--font); font-size: var(--size-small);
+  line-height: 1.65; white-space: pre-wrap; word-break: break-all;
+  background: var(--paper-sunk);
+}
+.copy { padding: 5px 12px; }
+
+.fields { margin-top: var(--gap-lg); }
+.fields .label { display: block; margin-bottom: var(--gap-sm); }
+.rows { width: 100%; border-collapse: collapse; }
+.rows th, .rows td {
+  text-align: left; padding: 7px var(--gap-sm) 7px 0;
+  border-bottom: var(--line) solid var(--rule);
+  font-size: var(--size-small); font-weight: 400;
+  word-break: break-all;
+}
+.rows th { color: var(--muted); white-space: nowrap; vertical-align: top; }
+.rows tr.field-note td {
+  color: var(--muted); font-size: var(--size-micro);
+  padding-top: 0; border-bottom: 0;
+}
+
+/* ---- findings -------------------------------------------------------- */
+
+.findings { list-style: none; margin: var(--gap-lg) 0 0; padding: 0; }
+
+.finding {
+  border-left: 2px solid var(--rule-strong);
+  padding: var(--gap-md);
+  margin-bottom: var(--gap-sm);
+  background: var(--paper-sunk);
+}
+.finding.is-critical { border-left-color: var(--danger); background: var(--danger-wash); }
+.finding.is-warning { border-left-color: var(--warn); background: var(--warn-wash); }
+.finding.is-note { border-left-color: var(--accent); background: var(--accent-wash); }
+
+.finding-level {
+  font-size: var(--size-micro); letter-spacing: var(--track-label);
+  text-transform: uppercase; margin: 0 0 var(--gap-xs); color: var(--muted);
+}
+.finding.is-critical .finding-level { color: var(--danger); }
+.finding.is-warning .finding-level { color: var(--warn); }
+.finding.is-note .finding-level { color: var(--accent); }
+
+.finding-title { font-size: var(--size-body); font-weight: 500; margin: 0 0 var(--gap-xs); }
+.finding-detail { font-size: var(--size-small); line-height: 1.65; color: var(--muted); margin: 0; }
+
+.verdict {
+  border-left: 2px solid var(--rule-strong);
+  padding: var(--gap-md); margin-top: var(--gap-lg);
+  background: var(--paper-sunk);
+}
+.verdict-head { font-size: var(--size-body); font-weight: 500; margin: 0 0 var(--gap-xs); }
+.verdict-body { font-size: var(--size-small); line-height: 1.65; color: var(--muted); margin: 0; }
+
+/* ---- footer ---------------------------------------------------------- */
+
+.footer { margin-top: var(--gap-xl); border-top: var(--line) solid var(--rule); padding: var(--gap-lg) 0 var(--gap-xl); }
+.footer-note { font-size: var(--size-micro); color: var(--muted); margin-top: var(--gap-md); }
